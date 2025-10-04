@@ -6,12 +6,26 @@
     "dev": "turbo run dev",
     "check:lint": "turbo run check:lint",
     "fix:lint": "turbo run fix:lint",
+    "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique",
     "check:types": "turbo run check:types"
   },
   "devDependencies": {
     "turbo": "^2.5.8",
     "typescript": "catalog:",
-    "@types/node": "catalog:"
+    "@types/node": "catalog:",
+    "@cspell/dict-bash": "^4.2.1",
+    "@cspell/dict-companies": "^3.2.5",
+    "@cspell/dict-en-gb": "5.0.14",
+    "cspell": "^9.2.1",
+    "@cspell/dict-es-es": "^3.0.8",
+    "@cspell/dict-filetypes": "^3.0.13",
+    "@cspell/dict-html": "^4.0.12",
+    "@cspell/dict-lorem-ipsum": "^4.0.5",
+    "@cspell/dict-node": "^5.0.8",
+    "@cspell/dict-npm": "^5.2.17",
+    "@cspell/dict-redis": "^1.0.7",
+    "@cspell/dict-software-terms": "^5.1.8",
+    "@cspell/dict-typescript": "^3.2.3"
   },
   "packageManager": "pnpm@10.18.0",
   "engines": {
