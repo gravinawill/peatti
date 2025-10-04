@@ -1,0 +1,37 @@
+{
+  "name": "@peatti/prettier-config",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "check:lint": "eslint . --max-warnings 0",
+    "check:types": "tsc --noEmit --pretty",
+    "clean": "rm -rf .turbo dist",
+    "dev": "tsdown --watch",
+    "fix:lint": "eslint --fix ."
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
+  },
+  "devDependencies": {
+    "@peatti/eslint-config": "workspace:*",
+    "@peatti/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "prettier": "catalog:",
+    "prettier-plugin-packagejson": "catalog:",
+    "prettier-plugin-prisma": "catalog:",
+    "prettier-plugin-tailwindcss": "catalog:",
+    "tsdown": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,8 +1,13 @@
 packages:
-  - "apps/*"
-  - "packages/*"
-  - "configs/*"
+  - apps/*
+  - packages/*
+  - configs/*
 
 catalog:
   '@types/node': ^24.6.2
+  prettier: ^3.6.2
+  prettier-plugin-packagejson: ^2.5.19
+  prettier-plugin-prisma: ^5.0.0
+  prettier-plugin-tailwindcss: ^0.6.14
+  tsdown: ^0.15.6
   typescript: ^5.9.3
