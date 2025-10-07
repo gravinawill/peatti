@@ -1,5 +1,6 @@
 import {
   DatabaseProviderMethods,
+  DateTime,
   extractErrorData,
   type ILoggerProvider,
   ProviderError,
@@ -17,7 +18,7 @@ export class Database {
   public prisma: PrismaClient
   private readonly loggerProvider: ILoggerProvider
   private connectionState: 'disconnected' | 'connecting' | 'connected' | 'error' = 'disconnected'
-  private connectionStartTime?: Date
+  private connectionStartTime?: DateTime
   private reconnectionAttempts = 0
   private readonly maxReconnectionAttempts = 5
 
@@ -45,12 +46,12 @@ export class Database {
       })
       await this.prisma.$connect()
       this.connectionState = 'connected'
-      this.connectionStartTime = new Date()
+      this.connectionStartTime = DateTime.now()
       this.reconnectionAttempts = 0
       this.loggerProvider.sendLogInfo({
         message: 'Successfully connected to database',
         data: {
-          connectionTime: this.connectionStartTime.toISOString(),
+          connectionTime: this.connectionStartTime.value.toISOString(),
           environment: authServerENV.ENVIRONMENT
         }
       })
@@ -94,7 +95,7 @@ export class Database {
   > {
     try {
       await this.prisma.$queryRaw`SELECT 1`
-      const uptime = this.connectionStartTime ? Date.now() - this.connectionStartTime.getTime() : undefined
+      const uptime = this.connectionStartTime ? Date.now() - this.connectionStartTime.getTimestamp() : undefined
       return success({ connectionStatus: 'connected', uptime, lastError: undefined })
     } catch (error: unknown) {
       const errorMessage = extractErrorData({ error })

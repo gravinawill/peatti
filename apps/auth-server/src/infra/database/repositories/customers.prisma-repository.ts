@@ -112,19 +112,27 @@ export class CustomersPrismaRepository
   public async save(parameters: SaveCustomersRepositoryDTO.Parameters): SaveCustomersRepositoryDTO.Result {
     const startTime = performance.now()
     try {
-      await this.database.prisma.customer.create({
-        data: {
-          createdAt: parameters.customer.createdAt,
-          deletedAt: parameters.customer.deletedAt,
-          email: parameters.customer.email.value,
-          id: parameters.customer.id.value,
-          isEmailVerified: parameters.customer.isEmailVerified,
-          isWhatsAppVerified: parameters.customer.isWhatsAppVerified,
-          name: parameters.customer.name,
-          updatedAt: parameters.customer.updatedAt,
-          whatsApp: parameters.customer.whatsApp.value
-        },
-        select: { id: true }
+      await this.database.prisma.$transaction(async (tx) => {
+        await tx.customer.create({
+          data: {
+            createdAt: parameters.customer.createdAt.value,
+            deletedAt: parameters.customer.deletedAt?.value,
+            email: parameters.customer.email.value,
+            id: parameters.customer.id.value,
+            name: parameters.customer.name,
+            updatedAt: parameters.customer.updatedAt.value,
+            whatsApp: parameters.customer.whatsApp.value
+          },
+          select: { id: true }
+        })
+        await tx.customerPending.createMany({
+          data: parameters.customer.customerPendings.map((pending) => ({
+            type: pending,
+            customerID: parameters.customer.id.value,
+            createdAt: parameters.customer.createdAt.value,
+            updatedAt: parameters.customer.updatedAt.value
+          }))
+        })
       })
       this.logger.sendLogTimeRepository({
         runtimeInMs: performance.now() - startTime,
