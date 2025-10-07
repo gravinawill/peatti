@@ -1,16 +1,18 @@
+import type { DateTime } from '../../../value-objects/date-time.value-object'
+
 import { CustomError } from '../../../shared/custom.error'
 import { ERROR_NAME } from '../../../shared/error-name'
 import { STATUS_ERROR } from '../../../shared/status-error'
 
 export class DateTimeOutOfRangeError extends CustomError {
-  constructor(parameters: { dateTime: string | Date | number; minDate?: Date; maxDate?: Date }) {
+  constructor(parameters: { dateTime: string | Date | number; minDate?: DateTime; maxDate?: DateTime }) {
     let rangeMessage = ''
     if (parameters.minDate && parameters.maxDate) {
-      rangeMessage = ` (must be between ${parameters.minDate.toISOString()} and ${parameters.maxDate.toISOString()})`
+      rangeMessage = ` (must be between ${parameters.minDate.value.toISOString()} and ${parameters.maxDate.value.toISOString()})`
     } else if (parameters.minDate) {
-      rangeMessage = ` (must be after ${parameters.minDate.toISOString()})`
+      rangeMessage = ` (must be after ${parameters.minDate.value.toISOString()})`
     } else if (parameters.maxDate) {
-      rangeMessage = ` (must be before ${parameters.maxDate.toISOString()})`
+      rangeMessage = ` (must be before ${parameters.maxDate.value.toISOString()})`
     }
 
     const dateTimeString =
