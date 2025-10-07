@@ -1,0 +1,8 @@
+export enum STATUS_SUCCESS {
+  CREATED = 'CREATED',
+  DONE = 'DONE',
+  DELETED = 'DELETED',
+  UPDATED = 'UPDATED',
+  LISTED = 'LISTED',
+  FOUND = 'FOUND'
+}
