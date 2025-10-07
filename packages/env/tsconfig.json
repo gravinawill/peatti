@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "exclude": ["node_modules", "dist", "build"],
+  "extends": "@peatti/typescript-config/base.json",
+  "compilerOptions": {
+    "paths": {
+      "@shared/*": ["./src/shared/*"],
+      "@packages/*": ["./src/packages/*"]
+    }
+  },
+  "include": ["**/*.ts"]
+}
