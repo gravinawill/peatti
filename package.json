@@ -11,8 +11,10 @@
     "check:lint": "turbo run check:lint",
     "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique",
     "check:types": "turbo run check:types",
+    "check:updates": "turbo run check:updates && ncu -u && pnpm install",
     "commit": "czg",
     "dev": "turbo run dev",
+    "dev:apps": "turbo run dev --filter=./apps/*",
     "fix:format": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
     "fix:lint": "turbo run fix:lint",
     "preinstall": "npx --yes only-allow pnpm"
@@ -33,17 +35,19 @@
     "@peatti/eslint-config": "workspace:*",
     "@peatti/prettier-config": "workspace:*",
     "@peatti/typescript-config": "workspace:*",
-    "@types/node": "catalog:",
+    "@types/node": "^24.7.0",
     "cspell": "^9.2.1",
     "czg": "^1.12.0",
     "eslint": "^9.37.0",
-    "prettier": "catalog:",
-    "prettier-plugin-packagejson": "catalog:",
-    "prettier-plugin-prisma": "catalog:",
+    "npm-check-updates": "^19.0.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "^2.5.19",
+    "prettier-plugin-prisma": "^5.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "turbo": "^2.5.8",
-    "typescript": "catalog:"
+    "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.18.0",
+  "packageManager": "pnpm@10.18.1",
   "engines": {
     "node": "24.9.0"
   }

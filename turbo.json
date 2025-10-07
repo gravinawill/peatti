@@ -23,9 +23,24 @@
     "check:types": {
       "dependsOn": ["^check:types"]
     },
+    "check:updates": {
+      "dependsOn": ["^check:updates"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "clean": {
+      "dependsOn": ["^clean"]
+    },
+    "db:generate": {
+      "dependsOn": ["^db:generate"]
+    },
+    "db:migrate": {
+      "dependsOn": ["^db:migrate"]
+    },
+    "db:migrate:prod": {
+      "dependsOn": ["^db:migrate:prod"]
     }
   }
 }
