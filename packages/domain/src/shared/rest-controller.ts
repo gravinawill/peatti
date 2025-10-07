@@ -144,7 +144,13 @@ export abstract class Controller<Parameters, SuccessData> {
     })
 
     return this.makeResponseError({
-      status: STATUS_ERROR.INTERNAL_ERROR,
+      status:
+        typeof parameters.error === 'object' &&
+        parameters.error !== null &&
+        'status' in parameters.error &&
+        Object.values(STATUS_ERROR).includes((parameters.error as { status: STATUS_ERROR }).status)
+          ? (parameters.error as { status: STATUS_ERROR }).status
+          : STATUS_ERROR.INTERNAL_ERROR,
       message:
         typeof parameters.error === 'object' &&
         parameters.error !== null &&
@@ -152,7 +158,13 @@ export abstract class Controller<Parameters, SuccessData> {
         typeof (parameters.error as { message?: unknown }).message === 'string'
           ? (parameters.error as { message: string }).message
           : String(parameters.error),
-      name: ERROR_NAME.GENERATE_ID_ERROR
+      name:
+        typeof parameters.error === 'object' &&
+        parameters.error !== null &&
+        'name' in parameters.error &&
+        typeof (parameters.error as { name?: unknown }).name === 'string'
+          ? (parameters.error as { name: ERROR_NAME }).name
+          : ERROR_NAME.INTERNAL_ERROR
     })
   }
 
