@@ -1,0 +1,21 @@
+{
+  "extends": "@peatti/typescript-config/base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "jsxImportSource": "hono/jsx",
+    "outDir": "./dist",
+    "pretty": true,
+    "paths": {
+      "@use-cases/*": ["./src/app/use-cases/*"],
+      "@controllers/*": ["./src/app/controllers/*"],
+      "@factories/*": ["./src/main/factories/*"],
+      "@models/*": ["./src/domain/models/*"],
+      "@contracts/*": ["./src/domain/contracts/*"],
+      "@infra/*": ["./src/infra/*"]
+    }
+  },
+  "include": ["./src/**/*.ts", "eslint.config.ts"],
+  "exclude": ["node_modules", "dist", "build", "prisma"]
+}
