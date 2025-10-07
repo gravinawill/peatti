@@ -10,19 +10,40 @@ datasource db {
 }
 
 model Customer {
-  name               String  @map("name") @db.VarChar(255)
-  email              String  @unique @map("email") @db.VarChar(255)
-  isEmailVerified    Boolean @map("is_email_verified") @db.Boolean()
-  whatsApp           String  @unique @map("whatsapp") @db.VarChar(255)
-  isWhatsAppVerified Boolean @map("is_whatsapp_verified") @db.Boolean()
+  name     String @map("name") @db.VarChar(255)
+  email    String @unique @map("email") @db.VarChar(255)
+  whatsApp String @unique @map("whatsapp") @db.VarChar(255)
 
   id        String    @id @unique @map("id") @db.Uuid()
   createdAt DateTime  @map("created_at") @db.Timestamptz()
   updatedAt DateTime  @map("updated_at") @db.Timestamptz()
   deletedAt DateTime? @map("deleted_at") @db.Timestamptz()
 
+  customerPending CustomerPending[] @relation("customer_pending_customer")
+
   @@index([id])
   @@index([whatsApp])
   @@index([email])
   @@map("customers")
+}
+
+enum CustomerPendingType {
+  EMAIL_VERIFICATION
+  WHATSAPP_VERIFICATION
+}
+
+model CustomerPending {
+  type CustomerPendingType @map("type")
+
+  customerID String   @map("customer_id") @db.Uuid()
+  customer   Customer @relation(fields: [customerID], references: [id], name: "customer_pending_customer", onDelete: Cascade, onUpdate: Cascade)
+
+  createdAt DateTime  @map("created_at") @db.Timestamptz()
+  updatedAt DateTime  @map("updated_at") @db.Timestamptz()
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz()
+
+  @@id([type, customerID])
+  @@unique([type, customerID])
+  @@index([customerID])
+  @@map("customer_pendings")
 }
