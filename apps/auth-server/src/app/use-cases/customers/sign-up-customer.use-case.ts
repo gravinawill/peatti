@@ -3,6 +3,7 @@ import { type IValidateEmailCustomersRepository } from '@contracts/repositories/
 import { type IValidateWhatsAppCustomersRepository } from '@contracts/repositories/customers/validate-whatsapp.customers-repository'
 import { Customer } from '@models/customer.model'
 import {
+  type CustomError,
   Email,
   EmailAlreadyInUseError,
   type IEncryptPasswordCryptoProvider,
@@ -12,7 +13,6 @@ import {
   WhatsApp,
   WhatsAppAlreadyInUseError
 } from '@peatti/domain'
-import { type CustomError } from '@peatti/domain/src/shared/custom.error'
 import { type Either, failure, success } from '@peatti/utils'
 
 export namespace SignUpCustomerUseCaseDTO {

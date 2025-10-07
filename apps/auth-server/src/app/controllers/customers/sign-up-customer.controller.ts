@@ -1,12 +1,12 @@
 import {
+  Controller,
+  type CustomError,
   type HttpRequest,
   type ILoggerProvider,
   type ResponseSuccess,
   STATUS_SUCCESS,
   type UseCase
 } from '@peatti/domain'
-import { type CustomError } from '@peatti/domain/src/shared/custom.error'
-import { Controller } from '@peatti/domain/src/shared/rest-controller'
 import { type Either } from '@peatti/utils'
 import { failure, success } from '@peatti/utils'
 import { type SignUpCustomerUseCaseDTO } from '@use-cases/customers/sign-up-customer.use-case'
