@@ -1,0 +1,28 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+  output     = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("AUTH_SERVER_DATABASE_URL")
+}
+
+model Customer {
+  name               String  @map("name") @db.VarChar(255)
+  email              String  @unique @map("email") @db.VarChar(255)
+  isEmailVerified    Boolean @map("is_email_verified") @db.Boolean()
+  whatsApp           String  @unique @map("whatsapp") @db.VarChar(255)
+  isWhatsAppVerified Boolean @map("is_whatsapp_verified") @db.Boolean()
+
+  id        String    @id @unique @map("id") @db.Uuid()
+  createdAt DateTime  @map("created_at") @db.Timestamptz()
+  updatedAt DateTime  @map("updated_at") @db.Timestamptz()
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz()
+
+  @@index([id])
+  @@index([whatsApp])
+  @@index([email])
+  @@map("customers")
+}
