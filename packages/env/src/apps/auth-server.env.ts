@@ -19,7 +19,13 @@ export const authServerENV = createEnv({
           .positive({ error: 'AUTH_SERVER_PORT must be positive' })
           .min(1, { error: 'AUTH_SERVER_PORT must be greater than 0' })
           .max(65_535, { error: 'AUTH_SERVER_PORT cannot exceed 65,535' })
-      )
+      ),
+    AUTH_SERVER_CORS_ORIGIN: z.string({ error: 'AUTH_SERVER_CORS_ORIGIN is required' }).transform((val) =>
+      val
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+    )
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true
