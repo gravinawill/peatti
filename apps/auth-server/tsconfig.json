@@ -16,6 +16,6 @@
       "@infra/*": ["./src/infra/*"]
     }
   },
-  "include": ["./src/**/*.ts", "eslint.config.ts"],
+  "include": ["./src/**/*.ts", "eslint.config.ts", "tsdown.config.ts"],
   "exclude": ["node_modules", "dist", "build", "prisma"]
 }

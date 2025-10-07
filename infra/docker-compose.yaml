@@ -40,6 +40,47 @@ services:
         max-size: '10m'
         max-file: '3'
 
+  auth-server:
+    container_name: peatti-auth-server
+    build:
+      context: ../
+      dockerfile: apps/auth-server/Dockerfile
+    hostname: auth-server
+    env_file:
+      - ../.env
+    environment:
+      AUTH_SERVER_DATABASE_URL: ${AUTH_SERVER_DATABASE_URL}
+      AUTH_SERVER_HOST: ${AUTH_SERVER_HOST}
+      AUTH_SERVER_PORT: ${AUTH_SERVER_PORT}
+      ENVIRONMENT: ${ENVIRONMENT}
+    ports:
+      - '${AUTH_SERVER_PORT}:${AUTH_SERVER_PORT}'
+    restart: unless-stopped
+    networks:
+      - peatti-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', 'curl --fail --silent http://${AUTH_SERVER_HOST}:${AUTH_SERVER_PORT}/healthcheck || exit 1']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1GB
+        reservations:
+          cpus: '0.5'
+          memory: 512MB
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+
 networks:
   peatti-network:
     driver: bridge

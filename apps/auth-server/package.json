@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "build": "pnpm with-env pnpm db:generate && rimraf dist && tsdown",
     "check:lint": "eslint . --max-warnings 0",
     "check:types": "tsc --noEmit --pretty",
     "check:updates": "ncu -u && pnpm install",
@@ -12,6 +13,7 @@
     "db:migrate:prod": "pnpm with-env prisma migrate deploy",
     "dev": "pnpm with-env tsx watch src/server.ts",
     "fix:lint": "eslint --fix .",
+    "start": "pnpm with-env node dist/server.js",
     "with-env": "dotenvx run -f ../../.env --"
   },
   "lint-staged": {
@@ -25,7 +27,7 @@
     "@peatti/env": "workspace:*",
     "@peatti/logger": "workspace:*",
     "@peatti/utils": "workspace:*",
-    "@prisma/client": "^6.16.3",
+    "@prisma/client": "^6.17.0",
     "@scalar/hono-api-reference": "^0.9.20",
     "hono": "^4.9.10"
   },
@@ -35,8 +37,14 @@
     "@peatti/typescript-config": "workspace:*",
     "@types/node": "^24.7.0",
     "npm-check-updates": "^19.0.0",
-    "prisma": "^6.16.3",
+    "prisma": "^6.17.0",
+    "rimraf": "^6.0.1",
+    "tsdown": "^0.15.6",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.18.1",
+  "engines": {
+    "node": "24.9.0"
   }
 }

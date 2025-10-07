@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: lint-staged
+      run: pnpm dlx lint-staged
+
+commit-msg:
+  parallel: true
+  jobs:
+    - name: commitlint
+      run: pnpm dlx commitlint --edit {1}
+
+    - name: spelling
+      run: pnpm check:spelling {1}
