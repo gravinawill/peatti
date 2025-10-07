@@ -7,17 +7,28 @@
     "build:apps": "turbo build --filter=./apps/*",
     "build:configs": "turbo build --filter=./configs/*",
     "build:packages": "turbo build --filter=./packages/*",
+    "check": "turbo check:types && turbo check:lint && pnpm check:format && pnpm check:spelling",
     "check:format": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
     "check:lint": "turbo run check:lint",
     "check:spelling": "cspell -c .cspell.json --no-progress --no-summary --no-must-find-files --unique",
     "check:types": "turbo run check:types",
     "check:updates": "turbo run check:updates && ncu -u && pnpm install",
+    "clean": "turbo clean && rm -rf .turbo coverage node_modules dist",
     "commit": "czg",
+    "db:migrate": "turbo run db:migrate",
     "dev": "turbo run dev",
     "dev:apps": "turbo run dev --filter=./apps/*",
+    "fix": "turbo fix:lint && pnpm fix:format",
     "fix:format": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
     "fix:lint": "turbo run fix:lint",
     "preinstall": "npx --yes only-allow pnpm"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx}": "eslint --fix",
+    "*.*": [
+      "prettier --write --ignore-unknown",
+      "pnpm check:spelling"
+    ]
   },
   "devDependencies": {
     "@cspell/dict-bash": "^4.2.1",
@@ -39,6 +50,8 @@
     "cspell": "^9.2.1",
     "czg": "^1.12.0",
     "eslint": "^9.37.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
     "npm-check-updates": "^19.0.0",
     "prettier": "^3.6.2",
     "prettier-plugin-packagejson": "^2.5.19",
