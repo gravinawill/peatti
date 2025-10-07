@@ -66,54 +66,7 @@ export class DateTime {
   }
 
   public static now(): DateTime {
-    const now = new Date()
-    const utcMinus3 = new Date(now.getTime() - 3 * 60 * 60 * 1000)
-    return new DateTime({ dateTime: utcMinus3 })
-  }
-
-  public static nowUTC(): DateTime {
     return new DateTime({ dateTime: new Date() })
-  }
-
-  public static nowInTimezone(parameters: {
-    timezone: string
-  }): Either<InvalidDateTimeError, { dateTimeCreated: DateTime }> {
-    try {
-      const now = new Date()
-      const utcTime = now.getTime() + now.getTimezoneOffset() * 60_000
-      // For Brazil (UTC-3), we subtract 3 hours
-      const timezoneOffset = DateTime.getTimezoneOffset(parameters.timezone)
-      const localTime = new Date(utcTime + timezoneOffset * 60_000)
-      return success({ dateTimeCreated: new DateTime({ dateTime: localTime }) })
-    } catch {
-      return failure(new InvalidDateTimeError({ dateTime: parameters.timezone }))
-    }
-  }
-
-  public toTimezone(parameters: { timezone: string }): Either<InvalidDateTimeError, { dateTimeConverted: DateTime }> {
-    try {
-      const utcTime = this.value.getTime() + this.value.getTimezoneOffset() * 60_000
-      const timezoneOffset = DateTime.getTimezoneOffset(parameters.timezone)
-      const localTime = new Date(utcTime + timezoneOffset * 60_000)
-      return success({ dateTimeConverted: new DateTime({ dateTime: localTime }) })
-    } catch {
-      return failure(new InvalidDateTimeError({ dateTime: parameters.timezone }))
-    }
-  }
-
-  private static getTimezoneOffset(timezone: string): number {
-    const timezoneOffsets: Record<string, number> = {
-      UTC: 0,
-      'America/Sao_Paulo': -180, // UTC-3
-      'America/New_York': -300, // UTC-5 (EST) / UTC-4 (EDT)
-      'America/Los_Angeles': -480, // UTC-8 (PST) / UTC-7 (PDT)
-      'Europe/London': 0, // UTC+0 (GMT) / UTC+1 (BST)
-      'Europe/Paris': 60, // UTC+1 (CET) / UTC+2 (CEST)
-      'Asia/Tokyo': 540, // UTC+9
-      'Asia/Shanghai': 480, // UTC+8
-      'Australia/Sydney': 660 // UTC+11 (AEDT) / UTC+10 (AEST)
-    }
-    return timezoneOffsets[timezone] ?? 0
   }
 
   public static create(parameters: { dateTime: Date }): Either<InvalidDateTimeError, { dateTimeCreated: DateTime }> {
@@ -187,7 +140,7 @@ export class DateTime {
     return new DateTime({ dateTime: newDate })
   }
 
-  public toTimestamp(): number {
+  public getTimestamp(): number {
     return this.value.getTime()
   }
 
