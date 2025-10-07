@@ -41,7 +41,6 @@ const CustomerWhatsAppSchema = z
     VALIDATION_CONSTANTS.WHATSAPP.MAX_LENGTH,
     `WhatsApp number must be ${VALIDATION_CONSTANTS.WHATSAPP.MAX_LENGTH} characters or less`
   )
-  .regex(/^\+?[1-9]\d{6,14}$/, 'WhatsApp number must be a valid international phone number format')
   .openapi({
     example: '+1234567890',
     description: 'The customer WhatsApp number. Must be a valid international phone number format (e.g., +1234567890).'
