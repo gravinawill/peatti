@@ -5,6 +5,9 @@ import { compress } from 'hono/compress'
 import { prettyJSON } from 'hono/pretty-json'
 import { secureHeaders } from 'hono/secure-headers'
 
+import { corsMiddleware } from './middlewares/cors.middleware'
+import { errorHandler } from './middlewares/error-handler.middleware'
+import { notFoundHandler } from './middlewares/not-found.middleware'
 import { routes } from './routes'
 
 const buildApp = (): OpenAPIHono => {
@@ -12,7 +15,10 @@ const buildApp = (): OpenAPIHono => {
   app.use('*', prettyJSON())
   app.use('*', compress())
   app.use('*', secureHeaders())
+  app.use('*', corsMiddleware)
   routes(app)
+  app.notFound(notFoundHandler)
+  app.onError(errorHandler)
   return app
 }
 
