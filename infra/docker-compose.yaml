@@ -1,0 +1,51 @@
+services:
+  postgres:
+    container_name: peatti-postgres
+    image: postgres:16-alpine
+    platform: linux/amd64
+    hostname: ${POSTGRESQL_HOSTNAME}
+    env_file:
+      - ../.env
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRES_USER: ${POSTGRESQL_USERNAME}
+      POSTGRES_DB: ${POSTGRESQL_DATABASE}
+      PGTZ: ${POSTGRESQL_TIMEZONE}
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql:ro
+    ports:
+      - '${POSTGRESQL_PORT}:5432'
+    restart: unless-stopped
+    networks:
+      - peatti-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRESQL_USERNAME} -d ${POSTGRESQL_DATABASE}']
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512MB
+        reservations:
+          cpus: '0.2'
+          memory: 256MB
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+networks:
+  peatti-network:
+    driver: bridge
+    name: peatti-network
+
+volumes:
+  postgres_data:
+    driver: local
+    name: peatti-postgres-data
