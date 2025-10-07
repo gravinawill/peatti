@@ -1,4 +1,5 @@
 import {
+  DateTime,
   type Email,
   type GenerateIDError,
   ID,
@@ -9,37 +10,39 @@ import {
 } from '@peatti/domain'
 import { type Either, failure, success } from '@peatti/utils'
 
+enum CustomerPendingType {
+  EMAIL_VERIFICATION = 'EMAIL_VERIFICATION',
+  WHATSAPP_VERIFICATION = 'WHATSAPP_VERIFICATION'
+}
+
 export class Customer {
   public readonly id: ID
   public name: string
   public email: Email
-  public isEmailVerified: boolean
   public whatsApp: WhatsApp
-  public isWhatsAppVerified: boolean
   public password: Password
-  public readonly createdAt: Date
-  public updatedAt: Date
-  public deletedAt: Date | null
+  public customerPendings: CustomerPendingType[]
+  public readonly createdAt: DateTime
+  public updatedAt: DateTime
+  public deletedAt: DateTime | null
 
   private constructor(parameters: {
     id: ID
     name: string
     email: Email
-    isEmailVerified: boolean
     whatsApp: WhatsApp
-    isWhatsAppVerified: boolean
     password: Password
-    createdAt: Date
-    updatedAt: Date
-    deletedAt: Date | null
+    customerPendings: CustomerPendingType[]
+    createdAt: DateTime
+    updatedAt: DateTime
+    deletedAt: DateTime | null
   }) {
     this.id = parameters.id
     this.name = parameters.name
     this.email = parameters.email
-    this.isEmailVerified = parameters.isEmailVerified
     this.whatsApp = parameters.whatsApp
-    this.isWhatsAppVerified = parameters.isWhatsAppVerified
     this.password = parameters.password
+    this.customerPendings = parameters.customerPendings
     this.createdAt = parameters.createdAt
     this.updatedAt = parameters.updatedAt
     this.deletedAt = parameters.deletedAt
@@ -54,16 +57,15 @@ export class Customer {
     const resultGenerateID = ID.generate({ modelName: ModelName.CUSTOMER })
     if (resultGenerateID.isFailure()) return failure(resultGenerateID.value)
     const { idGenerated: customerID } = resultGenerateID.value
-    const now = new Date()
+    const now = DateTime.now()
     return success({
       customerCreated: new Customer({
         id: customerID,
         name: parameters.name,
         email: parameters.email,
-        isEmailVerified: false,
         whatsApp: parameters.whatsApp,
-        isWhatsAppVerified: false,
         password: parameters.password,
+        customerPendings: [CustomerPendingType.EMAIL_VERIFICATION, CustomerPendingType.WHATSAPP_VERIFICATION],
         createdAt: now,
         updatedAt: now,
         deletedAt: null
