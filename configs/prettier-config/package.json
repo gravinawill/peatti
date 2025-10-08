@@ -32,6 +32,10 @@
     "prettier-plugin-terraform-formatter": "^1.2.1",
     "tsdown": "^0.15.6"
   },
+  "packageManager": "pnpm@10.18.1",
+  "engines": {
+    "node": "24.9.0"
+  },
   "publishConfig": {
     "access": "public"
   }
