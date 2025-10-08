@@ -92,6 +92,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.14
         version: 0.6.14(prettier@3.6.2)
+      prettier-plugin-terraform-formatter:
+        specifier: ^1.2.1
+        version: 1.2.1(prettier@3.6.2)
       turbo:
         specifier: ^2.5.8
         version: 2.5.8
@@ -280,6 +283,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.14
         version: 0.6.14(prettier@3.6.2)
+      prettier-plugin-terraform-formatter:
+        specifier: ^1.2.1
+        version: 1.2.1(prettier@3.6.2)
       tsdown:
         specifier: ^0.15.6
         version: 0.15.6(typescript@5.9.3)
@@ -3110,6 +3116,14 @@ packages:
       prettier-plugin-style-order:
         optional: true
       prettier-plugin-svelte:
+        optional: true
+
+  prettier-plugin-terraform-formatter@1.2.1:
+    resolution: {integrity: sha512-rdzV61Bs/Ecnn7uAS/vL5usTX8xUWM+nQejNLZxt3I1kJH5WSeLEmq7LYu1wCoEQF+y7Uv1xGvPRfl3lIe6+tA==}
+    peerDependencies:
+      prettier: '>= 1.16.0'
+    peerDependenciesMeta:
+      prettier:
         optional: true
 
   prettier@3.6.2:
@@ -6534,6 +6548,10 @@ snapshots:
 
   prettier-plugin-tailwindcss@0.6.14(prettier@3.6.2):
     dependencies:
+      prettier: 3.6.2
+
+  prettier-plugin-terraform-formatter@1.2.1(prettier@3.6.2):
+    optionalDependencies:
       prettier: 3.6.2
 
   prettier@3.6.2: {}
