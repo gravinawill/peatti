@@ -11,7 +11,13 @@ export const defineConfig = (config: Config = {}): Config => {
     semi: false,
     trailingComma: 'none',
     endOfLine: 'lf',
-    plugins: ['prettier-plugin-packagejson', 'prettier-plugin-prisma', 'prettier-plugin-tailwindcss', ...plugins],
+    plugins: [
+      'prettier-plugin-packagejson',
+      'prettier-plugin-prisma',
+      'prettier-plugin-terraform-formatter',
+      'prettier-plugin-tailwindcss',
+      ...plugins
+    ],
     printWidth: 120,
     ...rest
   }
