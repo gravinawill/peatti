@@ -1,5 +1,4 @@
-import { type Customer } from '@models/customer.model'
-import { type RepositoryError } from '@peatti/domain'
+import { type Customer, type RepositoryError } from '@peatti/domain'
 import { type Either } from '@peatti/utils'
 
 export namespace SaveCustomersRepositoryDTO {

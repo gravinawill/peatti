@@ -1,8 +1,8 @@
 import { type ISaveCustomersRepository } from '@contracts/repositories/customers/save.customers-repository'
 import { type IValidateEmailCustomersRepository } from '@contracts/repositories/customers/validate-email.customers-repository'
 import { type IValidateWhatsAppCustomersRepository } from '@contracts/repositories/customers/validate-whatsapp.customers-repository'
-import { Customer } from '@models/customer.model'
 import {
+  Customer,
   type CustomError,
   Email,
   EmailAlreadyInUseError,

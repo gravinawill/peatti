@@ -1,5 +1,4 @@
-import { type Customer } from '@models/customer.model'
-import { type InvalidIDError, type InvalidWhatsappError, type RepositoryError } from '@peatti/domain'
+import { type Customer, type InvalidIDError, type InvalidWhatsappError, type RepositoryError } from '@peatti/domain'
 import { type Either } from '@peatti/utils'
 
 export namespace ValidateWhatsAppCustomersRepositoryDTO {
