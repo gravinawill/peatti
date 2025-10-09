@@ -1,16 +1,15 @@
-import {
-  DateTime,
-  type Email,
-  type GenerateIDError,
-  ID,
-  InvalidCustomerNameError,
-  ModelName,
-  type Password,
-  type WhatsApp
-} from '@peatti/domain'
 import { type Either, failure, success } from '@peatti/utils'
 
-enum CustomerPendingType {
+import { InvalidCustomerNameError } from '../errors/models/customers/invalid-customer-name.error'
+import { type GenerateIDError } from '../errors/value-objects/id/generate-id.error'
+import { ModelName } from '../shared/model-name'
+import { DateTime } from '../value-objects/date-time.value-object'
+import { type Email } from '../value-objects/email.value-object'
+import { ID } from '../value-objects/id.value-object'
+import { type Password } from '../value-objects/password.value-object'
+import { type WhatsApp } from '../value-objects/whatsapp.value-object'
+
+export enum CustomerPendingType {
   EMAIL_VERIFICATION = 'EMAIL_VERIFICATION',
   WHATSAPP_VERIFICATION = 'WHATSAPP_VERIFICATION'
 }
