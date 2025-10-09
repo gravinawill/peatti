@@ -1,8 +1,7 @@
-import type { DateTime } from '../../../value-objects/date-time.value-object'
-
 import { CustomError } from '../../../shared/custom.error'
 import { ERROR_NAME } from '../../../shared/error-name'
 import { STATUS_ERROR } from '../../../shared/status-error'
+import { type DateTime } from '../../../value-objects/date-time.value-object'
 
 export class DateTimeOutOfRangeError extends CustomError {
   constructor(parameters: { dateTime: string | Date | number; minDate?: DateTime; maxDate?: DateTime }) {

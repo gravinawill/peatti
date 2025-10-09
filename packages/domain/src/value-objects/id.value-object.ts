@@ -1,14 +1,14 @@
-import type { ModelName } from '../shared/model-name'
-import type { ValueObjectName } from '../shared/value-object-name'
-
 import { type Either, failure, success } from '@peatti/utils'
 import { v7 as randomUUID } from 'uuid'
 
+import { type EventContractType } from '../contracts/events/events'
 import { GenerateIDError } from '../errors/value-objects/id/generate-id.error'
 import { type InvalidIDError } from '../errors/value-objects/id/invalid-id.error'
+import { type ModelName } from '../shared/model-name'
+import { type ValueObjectName } from '../shared/value-object-name'
 
 export class ID {
-  public readonly value: string
+  public value: string
 
   private constructor(parameters: { id: string }) {
     this.value = parameters.id.trim()
@@ -42,8 +42,13 @@ export class ID {
       )
     }
   }
+
   public equals(parameters: { otherID: ID }): boolean {
     if (!(parameters.otherID instanceof ID)) return false
     return this.value.toLowerCase().trim() === parameters.otherID.value.toLowerCase().trim()
+  }
+
+  public addEventContractType(parameters: { eventContractType: EventContractType }): void {
+    this.value = this.value + '-' + parameters.eventContractType.replaceAll('.', '-')
   }
 }
