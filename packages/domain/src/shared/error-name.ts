@@ -15,5 +15,8 @@ export enum ERROR_NAME {
   INVALID_DATETIME_ERROR = 'InvalidDateTimeError',
   DATETIME_OUT_OF_RANGE_ERROR = 'DateTimeOutOfRangeError',
   INVALID_DAY_OF_WEEK_ERROR = 'InvalidDayOfWeekError',
-  INVALID_MONTH_OF_YEAR_ERROR = 'InvalidMonthOfYearError'
+  INVALID_MONTH_OF_YEAR_ERROR = 'InvalidMonthOfYearError',
+  MESSAGE_BROKER_ERROR = 'MessageBrokerError',
+  EVENT_CONTRACT_TYPE_ERROR = 'EventContractTypeError',
+  KAFKA_SERIALIZED_ERROR = 'KafkaSerializedError'
 }

@@ -1,5 +1,6 @@
 import { type Either, failure, success } from '@peatti/utils'
 
+import { EventContractTypeError } from '../../errors/shared/event-contract-type.error'
 import { type GenerateIDError } from '../../errors/value-objects/id/generate-id.error'
 import { ValueObjectName } from '../../shared/value-object-name'
 import { DateTime } from '../../value-objects/date-time.value-object'
@@ -11,20 +12,24 @@ export const EventContractType = {
   CUSTOMER_CREATED: CUSTOMER_CREATED_EVENT_CONTRACT_TYPE
 } as const
 
+export enum EventServerName {
+  AUTH_SERVER = 'auth-server'
+}
+
 export type EventContractType = (typeof EventContractType)[keyof typeof EventContractType]
 
-export type BaseEventContract<Payload = unknown> = {
+export type BaseEventContract<Payload = unknown> = Readonly<{
   payload: Payload
   createdAt: DateTime
   id: ID
-}
+}>
 
 export function selectEventContractType(parameters: {
   eventContractType: string
-}): Either<Error, { eventContractType: EventContractType }> {
+}): Either<EventContractTypeError, { eventContractType: EventContractType }> {
   const contractType = Object.values(EventContractType).find((type) => type === parameters.eventContractType)
   if (contractType) return success({ eventContractType: contractType })
-  return failure(new Error(`Unknown event contract type: ${parameters.eventContractType}`))
+  return failure(new EventContractTypeError({ providedType: parameters.eventContractType }))
 }
 
 export function createEventContract<Payload>(parameters: {
