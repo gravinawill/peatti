@@ -3,6 +3,7 @@ import {
   type CustomError,
   type HttpRequest,
   type ILoggerProvider,
+  type ISendMessageEventProvider,
   type ResponseSuccess,
   STATUS_SUCCESS,
   type UseCase
@@ -38,7 +39,8 @@ export class SignUpCustomerController extends Controller<
       SignUpCustomerUseCaseDTO.Parameters,
       SignUpCustomerUseCaseDTO.ResultFailure,
       SignUpCustomerUseCaseDTO.ResultSuccess
-    >
+    >,
+    private readonly eventProvider: ISendMessageEventProvider
   ) {
     super(loggerProvider)
   }
@@ -46,7 +48,7 @@ export class SignUpCustomerController extends Controller<
   protected async performOperation(
     parameters: SignUpCustomerControllerDTO.Parameters
   ): SignUpCustomerControllerDTO.Result {
-    const response = await this.signUpCustomerUseCase.execute({
+    const responseSignUp = await this.signUpCustomerUseCase.execute({
       customer: {
         name: parameters.body.customer.name,
         email: parameters.body.customer.email,
@@ -54,7 +56,26 @@ export class SignUpCustomerController extends Controller<
         password: parameters.body.customer.password
       }
     })
-    if (response.isFailure()) return failure(response.value)
+    if (responseSignUp.isFailure()) return failure(responseSignUp.value)
+    // const { customer } = responseSignUp.value
+
+    /*
+     * const resultSendMessage = await this.eventProvider.sendMessage<CustomersCustomerCreatedPayload>({
+     *   eventContractType: CUSTOMER_CREATED_EVENT_CONTRACT_TYPE,
+     *   payload: {
+     *     customerID: customer.id,
+     *     name: customer.name,
+     *     email: customer.email,
+     *     whatsApp: customer.whatsApp,
+     *     customerPendings: customer.customerPendings,
+     *     createdAt: customer.createdAt,
+     *     updatedAt: customer.updatedAt
+     *   }
+     * })
+     * if (resultSendMessage.isFailure()) return failure(resultSendMessage.value)
+     */
+
+    //TODO: Sign in customer
 
     return success({
       access_token: 'test',
