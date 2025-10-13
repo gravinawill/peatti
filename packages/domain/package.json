@@ -21,9 +21,10 @@
   "devDependencies": {
     "@peatti/eslint-config": "workspace:*",
     "@peatti/typescript-config": "workspace:*",
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.7.1",
     "npm-check-updates": "^19.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "zod": "^4.1.12"
   },
   "packageManager": "pnpm@10.18.1",
   "engines": {

@@ -14,11 +14,17 @@
   "lint-staged": {
     "*.ts": "eslint --fix"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@peatti/domain": "workspace:*",
+    "@peatti/logger": "workspace:*",
+    "@peatti/utils": "workspace:*",
+    "kafkajs": "^2.2.4",
+    "zod": "^4.1.12"
+  },
   "devDependencies": {
     "@peatti/eslint-config": "workspace:*",
     "@peatti/typescript-config": "workspace:*",
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.7.1",
     "npm-check-updates": "^19.0.0",
     "typescript": "^5.9.3"
   },

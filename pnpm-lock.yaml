@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.1.0
-        version: 20.1.0(@types/node@24.7.0)(typescript@5.9.3)
+        version: 20.1.0(@types/node@24.7.1)(typescript@5.9.3)
       '@commitlint/config-conventional':
         specifier: ^20.0.0
         version: 20.0.0
@@ -60,8 +60,8 @@ importers:
         specifier: workspace:*
         version: link:configs/typescript-config
       '@types/node':
-        specifier: ^24.7.0
-        version: 24.7.0
+        specifier: ^24.7.1
+        version: 24.7.1
       cspell:
         specifier: ^9.2.1
         version: 9.2.1
@@ -129,8 +129,8 @@ importers:
         specifier: ^6.17.0
         version: 6.17.0(prisma@6.17.0(typescript@5.9.3))(typescript@5.9.3)
       '@scalar/hono-api-reference':
-        specifier: ^0.9.20
-        version: 0.9.20(hono@4.9.10)
+        specifier: ^0.9.21
+        version: 0.9.21(hono@4.9.10)
       hono:
         specifier: ^4.9.10
         version: 4.9.10
@@ -145,8 +145,8 @@ importers:
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
-        specifier: ^24.7.0
-        version: 24.7.0
+        specifier: ^24.7.1
+        version: 24.7.1
       npm-check-updates:
         specifier: ^19.0.0
         version: 19.0.0
@@ -314,8 +314,8 @@ importers:
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
-        specifier: ^24.7.0
-        version: 24.7.0
+        specifier: ^24.7.1
+        version: 24.7.1
       npm-check-updates:
         specifier: ^19.0.0
         version: 19.0.0
@@ -339,14 +339,17 @@ importers:
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
-        specifier: ^24.7.0
-        version: 24.7.0
+        specifier: ^24.7.1
+        version: 24.7.1
       npm-check-updates:
         specifier: ^19.0.0
         version: 19.0.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
 
   packages/env:
     dependencies:
@@ -367,8 +370,42 @@ importers:
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
-        specifier: ^24.7.0
-        version: 24.7.0
+        specifier: ^24.7.1
+        version: 24.7.1
+      npm-check-updates:
+        specifier: ^19.0.0
+        version: 19.0.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/events:
+    dependencies:
+      '@peatti/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@peatti/logger':
+        specifier: workspace:*
+        version: link:../logger
+      '@peatti/utils':
+        specifier: workspace:*
+        version: link:../utils
+      kafkajs:
+        specifier: ^2.2.4
+        version: 2.2.4
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
+    devDependencies:
+      '@peatti/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint-config
+      '@peatti/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript-config
+      '@types/node':
+        specifier: ^24.7.1
+        version: 24.7.1
       npm-check-updates:
         specifier: ^19.0.0
         version: 19.0.0
@@ -398,8 +435,8 @@ importers:
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
-        specifier: ^24.7.0
-        version: 24.7.0
+        specifier: ^24.7.1
+        version: 24.7.1
       npm-check-updates:
         specifier: ^19.0.0
         version: 19.0.0
@@ -416,8 +453,8 @@ importers:
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
-        specifier: ^24.7.0
-        version: 24.7.0
+        specifier: ^24.7.1
+        version: 24.7.1
       npm-check-updates:
         specifier: ^19.0.0
         version: 19.0.0
@@ -1251,22 +1288,22 @@ packages:
   '@rolldown/pluginutils@1.0.0-beta.42':
     resolution: {integrity: sha512-N7pQzk9CyE7q0bBN/q0J8s6Db279r5kUZc6d7/wWRe9/zXqC52HQovVyu6iXPIDY4BEzzgbVLhVFXrOuGJ22ZQ==}
 
-  '@scalar/core@0.3.18':
-    resolution: {integrity: sha512-STi6LiJTqOYwz4VhKi61SYhqOTT8TJ3M//XQyT3OwwfY0iBR/HNKUNnHsIWJdwaoGO4Ida5jj4L0JmpKtwQxTQ==}
+  '@scalar/core@0.3.19':
+    resolution: {integrity: sha512-pxyvpDqOc17W0IcvbqJMLfax5ovQzDpljxFH50njXIOcDcgDMcrLxnl3nXXNWQBTWStiZq4RoPP/qCpE2ecUNQ==}
     engines: {node: '>=20'}
 
-  '@scalar/hono-api-reference@0.9.20':
-    resolution: {integrity: sha512-KZX+fN9E3UcH8HBDIuwm3e4bSonxnEEiRW2XdqHMPK3ToMrz4ulxckZL2/ByIuzzogO7umq7eRieJchfH61SHg==}
+  '@scalar/hono-api-reference@0.9.21':
+    resolution: {integrity: sha512-Mum7m3OhmMc9LXAIG/J6H6CrrZ1BDPiRaE3SUjXqfddooMX6V0yhP1X9oXBZ30/cWtW58SntZG+6fuL+QZO+vg==}
     engines: {node: '>=20'}
     peerDependencies:
       hono: ^4.0.0
 
-  '@scalar/openapi-types@0.4.0':
-    resolution: {integrity: sha512-vdFLzz7vETw6kS3bxWUHCBeFtJOnr1bk/+FXKyxKkd6TbcyT6USXkoelI704IaBdoXyOgGX10FD1IVrs4FwUow==}
+  '@scalar/openapi-types@0.4.1':
+    resolution: {integrity: sha512-JCXCbs/Sty/qosplTFP0YdR2yD7Jkzfy44+3Om3dlzNtOu92lVTcvcVU3MIn1J4zY4/gk23DhI3m137xxNITRw==}
     engines: {node: '>=20'}
 
-  '@scalar/types@0.3.0':
-    resolution: {integrity: sha512-RVL4waBX2jpshVBU8l1J8gsG+Ai9oRoTN1Zc1+yaO2WG/ZMXOBtq1noJWpUk2c2i16E1oxmRZC8/nPNFRbkxog==}
+  '@scalar/types@0.3.1':
+    resolution: {integrity: sha512-wTxhK6ByAcJRuSTJSwu3CCy0JvxxekAk1hHlseSnZ6/jKSANPmkCY/804wrRUW6A5TgyFx/4nVl4Vb3ymymHvg==}
     engines: {node: '>=20'}
 
   '@standard-schema/spec@1.0.0':
@@ -1309,6 +1346,9 @@ packages:
 
   '@types/node@24.7.0':
     resolution: {integrity: sha512-IbKooQVqUBrlzWTi79E8Fw78l8k1RNtlDDNWsFZs7XonuQSJ8oNYfEeclhprUldXISRMLzBpILuKgPlIxm+/Yw==}
+
+  '@types/node@24.7.1':
+    resolution: {integrity: sha512-CmyhGZanP88uuC5GpWU9q+fI61j2SkhO3UGMUdfYRE6Bcy0ccyzn1Rqj9YAB/ZY4kOXmNf0ocah5GtphmLMP6Q==}
 
   '@typescript-eslint/eslint-plugin@8.45.0':
     resolution: {integrity: sha512-HC3y9CVuevvWCl/oyZuI47dOeDF9ztdMEfMH8/DW/Mhwa9cCLnK1oD7JoTVGW/u7kFzNZUKUoyJEqkaJh5y3Wg==}
@@ -2644,6 +2684,10 @@ packages:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
 
+  kafkajs@2.2.4:
+    resolution: {integrity: sha512-j/YeapB1vfPT2iOIUn/vxdyKEuhuY2PxMBvf5JWux6iSaukAccrMtXEY/Lb7OvavDhOWME589bpLrEdnVHjfjA==}
+    engines: {node: '>=14.0.0'}
+
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
@@ -3757,11 +3801,11 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@commitlint/cli@20.1.0(@types/node@24.7.0)(typescript@5.9.3)':
+  '@commitlint/cli@20.1.0(@types/node@24.7.1)(typescript@5.9.3)':
     dependencies:
       '@commitlint/format': 20.0.0
       '@commitlint/lint': 20.0.0
-      '@commitlint/load': 20.1.0(@types/node@24.7.0)(typescript@5.9.3)
+      '@commitlint/load': 20.1.0(@types/node@24.7.1)(typescript@5.9.3)
       '@commitlint/read': 20.0.0
       '@commitlint/types': 20.0.0
       tinyexec: 1.0.1
@@ -3808,7 +3852,7 @@ snapshots:
       '@commitlint/rules': 20.0.0
       '@commitlint/types': 20.0.0
 
-  '@commitlint/load@20.1.0(@types/node@24.7.0)(typescript@5.9.3)':
+  '@commitlint/load@20.1.0(@types/node@24.7.1)(typescript@5.9.3)':
     dependencies:
       '@commitlint/config-validator': 20.0.0
       '@commitlint/execute-rule': 20.0.0
@@ -3816,7 +3860,7 @@ snapshots:
       '@commitlint/types': 20.0.0
       chalk: 5.6.2
       cosmiconfig: 9.0.0(typescript@5.9.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.7.0)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.7.1)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -4545,22 +4589,22 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.0-beta.42': {}
 
-  '@scalar/core@0.3.18':
+  '@scalar/core@0.3.19':
     dependencies:
-      '@scalar/types': 0.3.0
+      '@scalar/types': 0.3.1
 
-  '@scalar/hono-api-reference@0.9.20(hono@4.9.10)':
+  '@scalar/hono-api-reference@0.9.21(hono@4.9.10)':
     dependencies:
-      '@scalar/core': 0.3.18
+      '@scalar/core': 0.3.19
       hono: 4.9.10
 
-  '@scalar/openapi-types@0.4.0':
+  '@scalar/openapi-types@0.4.1':
     dependencies:
       zod: 4.1.11
 
-  '@scalar/types@0.3.0':
+  '@scalar/types@0.3.1':
     dependencies:
-      '@scalar/openapi-types': 0.4.0
+      '@scalar/openapi-types': 0.4.1
       nanoid: 5.1.5
       type-fest: 4.41.0
       zod: 4.1.11
@@ -4589,13 +4633,17 @@ snapshots:
 
   '@types/conventional-commits-parser@5.0.1':
     dependencies:
-      '@types/node': 24.7.0
+      '@types/node': 24.7.1
 
   '@types/estree@1.0.8': {}
 
   '@types/json-schema@7.0.15': {}
 
   '@types/node@24.7.0':
+    dependencies:
+      undici-types: 7.14.0
+
+  '@types/node@24.7.1':
     dependencies:
       undici-types: 7.14.0
 
@@ -4988,9 +5036,9 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@24.7.0)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@24.7.1)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
-      '@types/node': 24.7.0
+      '@types/node': 24.7.1
       cosmiconfig: 9.0.0(typescript@5.9.3)
       jiti: 2.6.1
       typescript: 5.9.3
@@ -6141,6 +6189,8 @@ snapshots:
       array.prototype.flat: 1.3.3
       object.assign: 4.1.7
       object.values: 1.2.1
+
+  kafkajs@2.2.4: {}
 
   keyv@4.5.4:
     dependencies:

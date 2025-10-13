@@ -49,7 +49,7 @@
     "@peatti/eslint-config": "workspace:*",
     "@peatti/prettier-config": "workspace:*",
     "@peatti/typescript-config": "workspace:*",
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.7.1",
     "cspell": "^9.2.1",
     "czg": "^1.12.0",
     "eslint": "^9.37.0",
