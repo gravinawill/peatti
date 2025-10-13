@@ -28,14 +28,14 @@
     "@peatti/logger": "workspace:*",
     "@peatti/utils": "workspace:*",
     "@prisma/client": "^6.17.0",
-    "@scalar/hono-api-reference": "^0.9.20",
+    "@scalar/hono-api-reference": "^0.9.21",
     "hono": "^4.9.10"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.51.0",
     "@peatti/eslint-config": "workspace:*",
     "@peatti/typescript-config": "workspace:*",
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.7.1",
     "npm-check-updates": "^19.0.0",
     "prisma": "^6.17.0",
     "rimraf": "^6.0.1",
