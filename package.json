@@ -22,7 +22,7 @@
     "fix:format": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
     "fix:lint": "turbo run fix:lint",
     "preinstall": "npx --yes only-allow pnpm",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install && pnpm build:configs && pnpm build:packages"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": "eslint --fix",
