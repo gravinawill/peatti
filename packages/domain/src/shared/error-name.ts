@@ -11,6 +11,7 @@ export enum ERROR_NAME {
   INVALID_RESTAURANT_OWNER_NAME_ERROR = 'InvalidRestaurantOwnerNameError',
   REPOSITORY_ERROR = 'RepositoryError',
   PROVIDER_ERROR = 'ProviderError',
+  UNKNOWN_EVENT_CONTRACT_NAME_ERROR = 'UnknownEventContractNameError',
   WHATSAPP_ALREADY_IN_USE_ERROR = 'WhatsappAlreadyInUseError',
   EMAIL_ALREADY_IN_USE_ERROR = 'EmailAlreadyInUseError',
   INVALID_DATETIME_ERROR = 'InvalidDateTimeError',
