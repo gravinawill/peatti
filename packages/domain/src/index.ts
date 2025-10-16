@@ -9,6 +9,7 @@ export * from './contracts/providers/logger/send-log-time-repository.logger-prov
 export * from './contracts/providers/logger/send-log-time-use-case.logger-provider'
 export * from './contracts/providers/logger/send-log-warn.logger-provider'
 export * from './errors/models/customers/invalid-customer-name.error'
+export * from './errors/models/restaurant-owners/invalid-restaurant-owner-name.error'
 export * from './errors/shared/provider.error'
 export * from './errors/shared/repository.error'
 export * from './errors/value-objects/date-time/date-time-out-of-range.error'

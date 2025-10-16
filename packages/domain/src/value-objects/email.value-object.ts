@@ -29,22 +29,30 @@ export class Email {
     return success({ emailCreated: new Email({ email: parameters.email, isVerified }) })
   }
 
-  public static validate(parameters: {
-    email: string
-    customerID: ID | null
-  }): Either<InvalidEmailError, { emailValidated: Email }> {
+  public static validate(
+    parameters: { email: string; customerID: ID | null } | { email: string; restaurantOwnerID: ID | null }
+  ): Either<InvalidEmailError, { emailValidated: Email }> {
     const normalizedEmail = Email.normalizeEmail({ email: parameters.email })
+
+    const errorParams =
+      'customerID' in parameters
+        ? { email: parameters.email, customerID: parameters.customerID }
+        : { email: parameters.email, restaurantOwnerID: parameters.restaurantOwnerID }
+
     if (!Email.hasValidStructure({ email: normalizedEmail })) {
-      return failure(new InvalidEmailError({ email: parameters.email, customerID: null }))
+      return failure(new InvalidEmailError(errorParams))
     }
+
     const [localPart, domain] = normalizedEmail.split('@')
     if (!localPart || !Email.isValidLocalPart({ localPart })) {
-      return failure(new InvalidEmailError({ email: parameters.email, customerID: null }))
+      return failure(new InvalidEmailError(errorParams))
     }
+
     if (!domain || !Email.isValidDomain({ domain })) {
-      return failure(new InvalidEmailError({ email: parameters.email, customerID: null }))
+      return failure(new InvalidEmailError(errorParams))
     }
-    return success({ emailValidated: new Email({ email: parameters.email, isVerified: false }) })
+
+    return success({ emailValidated: new Email({ email: normalizedEmail, isVerified: false }) })
   }
 
   public getDomain(): Either<InvalidEmailError, { domain: string }> {

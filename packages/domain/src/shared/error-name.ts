@@ -8,6 +8,7 @@ export enum ERROR_NAME {
   INVALID_PASSWORD_LENGTH_ERROR = 'InvalidPasswordLengthError',
   INVALID_WHATSAPP_ERROR = 'InvalidWhatsappError',
   INVALID_CUSTOMER_NAME_ERROR = 'InvalidCustomerNameError',
+  INVALID_RESTAURANT_OWNER_NAME_ERROR = 'InvalidRestaurantOwnerNameError',
   REPOSITORY_ERROR = 'RepositoryError',
   PROVIDER_ERROR = 'ProviderError',
   WHATSAPP_ALREADY_IN_USE_ERROR = 'WhatsappAlreadyInUseError',
