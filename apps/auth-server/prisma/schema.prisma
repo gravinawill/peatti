@@ -10,9 +10,10 @@ datasource db {
 }
 
 model Customer {
-  name     String @map("name") @db.VarChar(255)
-  email    String @unique @map("email") @db.VarChar(255)
-  whatsApp String @unique @map("whatsapp") @db.VarChar(255)
+  name              String @map("name") @db.VarChar(255)
+  email             String @unique @map("email") @db.VarChar(255)
+  whatsApp          String @unique @map("whatsapp") @db.VarChar(255)
+  passwordEncrypted String @map("password_encrypted") @db.VarChar(255)
 
   id        String    @id @unique @map("id") @db.Uuid()
   createdAt DateTime  @map("created_at") @db.Timestamptz()
@@ -46,4 +47,44 @@ model CustomerPending {
   @@unique([type, customerID])
   @@index([customerID])
   @@map("customer_pendings")
+}
+
+model RestaurantOwner {
+  name              String @map("name") @db.VarChar(255)
+  email             String @unique @map("email") @db.VarChar(255)
+  whatsApp          String @unique @map("whatsapp") @db.VarChar(255)
+  passwordEncrypted String @map("password_encrypted") @db.VarChar(255)
+
+  id        String    @id @unique @map("id") @db.Uuid()
+  createdAt DateTime  @map("created_at") @db.Timestamptz()
+  updatedAt DateTime  @map("updated_at") @db.Timestamptz()
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz()
+
+  restaurantOwnerPending RestaurantOwnerPending[] @relation("restaurant_owner_pending_restaurant_owner")
+
+  @@index([id])
+  @@index([whatsApp])
+  @@index([email])
+  @@map("restaurant_owners")
+}
+
+enum RestaurantOwnerPendingType {
+  EMAIL_VERIFICATION
+  WHATSAPP_VERIFICATION
+}
+
+model RestaurantOwnerPending {
+  type RestaurantOwnerPendingType @map("type")
+
+  restaurantOwnerID String          @map("restaurant_owner_id") @db.Uuid()
+  restaurantOwner   RestaurantOwner @relation(fields: [restaurantOwnerID], references: [id], name: "restaurant_owner_pending_restaurant_owner", onDelete: Cascade, onUpdate: Cascade)
+
+  createdAt DateTime  @map("created_at") @db.Timestamptz()
+  updatedAt DateTime  @map("updated_at") @db.Timestamptz()
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz()
+
+  @@id([type, restaurantOwnerID])
+  @@unique([type, restaurantOwnerID])
+  @@index([restaurantOwnerID])
+  @@map("restaurant_owner_pendings")
 }
