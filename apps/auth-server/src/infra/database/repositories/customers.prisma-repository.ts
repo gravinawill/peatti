@@ -117,6 +117,7 @@ export class CustomersPrismaRepository
           data: {
             createdAt: parameters.customer.createdAt.value,
             deletedAt: parameters.customer.deletedAt?.value,
+            passwordEncrypted: parameters.customer.password.value,
             email: parameters.customer.email.value,
             id: parameters.customer.id.value,
             name: parameters.customer.name,
